@@ -1,0 +1,12 @@
+0093e97fddaead12cebb9ae69dcc7377 *DESCRIPTION
+c1c1f3f0450daa6ff65c3d70e4cbda17 *NAMESPACE
+535fc80ebc934033a83b187f5822bde4 *NEWS.md
+d32fa4dae8512e20eb35fa372b3db0de *R/wiki_didyouknow.R
+0cb46670135dedde70906a8945a6dc91 *R/wiki_inthenews.R
+7b2f95f74a6d492a9a0bab3d0e0d9cce *R/wiki_onthisday.R
+dbd647693175beb5df5960ac34ab3399 *R/wiki_randomfact.R
+0025fde868d7d8feb3fbba5082fa7036 *README.md
+92e53825718fe293a99b8949605ecf06 *man/wiki_didyouknow.Rd
+14d7cda6901bb59573d7c960bca0e1f4 *man/wiki_inthenews.Rd
+b78ee8b6088444ce88bed9d84dab62cb *man/wiki_onthisday.Rd
+03e4021d8e5057d69b18c3d8a006196c *man/wiki_randomfact.Rd

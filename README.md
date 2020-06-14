@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# wikifacts
+# wikifacts <img src="wikifacts.png" align="right" width="200"/>
 
 <!-- badges: start -->
 
@@ -9,11 +9,18 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/keithmcnulty/wikifacts/workflows/R-CMD-check/badge.svg)](https://github.com/keithmcnulty/wikifacts/actions)
+[![Total
+Downloads](http://cranlogs.r-pkg.org/badges/grand-total/wikifacts?color=green)](https://cran.r-project.org/package=wikifacts)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/wikifacts)](https://CRAN.R-project.org/package=wikifacts)
+[![Travis build
+status](https://travis-ci.com/keithmcnulty/wikifacts.svg?branch=master)](https://travis-ci.com/keithmcnulty/wikifacts)
+[![Codecov test
+coverage](https://codecov.io/gh/keithmcnulty/wikifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/keithmcnulty/wikifacts?branch=master)
 <!-- badges: end -->
 
-R package which generates strings containing random facts from current
-or historic Wikipedia main pages. Intended for light-hearted support for
-scripts or apps that take a long time to execute.
+R package which generates random facts from historic Wikipedia main
+pages.
 
 ## Installation
 
@@ -33,34 +40,34 @@ devtools::install_github("keithmcnulty/wikifacts")
 
 ## Functionality
 
-  - `wiki_didyouknow()` generates string with random ‘did you know’ fact
-    from Wikipedia main page
-  - `wiki_inthenews()` generates string with random ‘in the news’ fact
-    from Wikipedia main page
-  - `wiki_onthisday()` generates string with random ‘on this day’ fact
-    from Wikipedia main page
-  - `wiki_randomfact()` generates string with random fact from Wikipedia
-    main page (one of the above selected randomly)
+  - `wiki_didyouknow()` generates random ‘did you know’ facts from
+    Wikipedia main page
+  - `wiki_inthenews()` generates srandom ‘in the news’ facts from
+    Wikipedia main page
+  - `wiki_onthisday()` generates random ‘on this day’ facts from
+    Wikipedia main page
+  - `wiki_randomfact()` generates random facts from Wikipedia main page
+  - `wiki_search()` launches browser with Wikipedia search results
 
 ## Examples
 
 ``` r
 wiki_didyouknow() %>% cat()
-#> Did you know that the first observed underwater explosive volcanic eruption (example pictured) occurred in 2004 at NW Rota-1? (Courtesy of Wikipedia)
+#> Did you know that Blackrocks Brewery was created by two unemployed pharmaceutical salesmen? (Courtesy of Wikipedia)
 ```
 
 ``` r
-wiki_randomfact("2015-01-02") %>% cat()
-#> Here was some news on 02 January 2015. Beji Caid Essebsi wins the Tunisian presidential election. (Courtesy of Wikipedia)
+wiki_randomfact() %>% cat()
+#> Here's some news from 05 May 2019. An earthquake in Luzon, the Philippines, kills at least 18 people. (Courtesy of Wikipedia)
 ```
 
 Use with `cowsay`:
 
 ``` r
-cowsay::say(wiki_randomfact("2015-01-02"))
+cowsay::say(wiki_randomfact())
 #> 
 #>  -------------- 
-#> Did you know that on January 2 in 1944 – World War II: The United States and Australia successfully landed 13,000 troops on Papua New Guinea in an attempt to cut off a Japanese retreat. (Courtesy of Wikipedia) 
+#> Here's some news from 02 November 2017. In New York City, a ramming attack (vehicle pictured) kills eight people and injures at least eleven others. (Courtesy of Wikipedia) 
 #>  --------------
 #>     \
 #>       \
@@ -78,31 +85,24 @@ cowsay::say(wiki_randomfact("2015-01-02"))
 #> 
 ```
 
-Generate a table of random facts by date (using
-`dplyr 1.0.0`):
+Generate multiple random facts:
 
 ``` r
-date_tbl <- data.frame(date = seq(from = as.Date("2015-01-01"), to = as.Date("2015-01-14"), by = "days"))
+wiki_randomfact(n_facts = 10, bare_fact = TRUE)
+#>  [1] "The wreck of Argentinian submarine San Juan, which disappeared in November 2017, is found in the South Atlantic."                                                                                           
+#>  [2] "1842 – American Indian Wars: American general William J. Worth declared the Second Seminole War to be over."                                                                                                
+#>  [3] "... that Kavya Manyapu led the development of a dust-repelling fabric for space suits using carbon nanotubes?"                                                                                              
+#>  [4] "Cyberattacks on Ukraine spread a new variant of the Petya malware (ransom note pictured) around the world and cause severe disruptions."                                                                    
+#>  [5] "... that Green Bay Packers defensive tackle Dave Roller, who weighed 270 pounds (120 kg) at the time, was carried off Lambeau Field by fans after a victory against the Detroit Lions?"                     
+#>  [6] "... that Elad Chakrina initially won Mayotte's 1st constituency by 12 votes, lost by 54 votes after a counting error was corrected, then forced a by-election after an appeal?"                             
+#>  [7] "... that director and screenwriter Travis Stevens paused renovations on his house to film Girl on the Third Floor?"                                                                                         
+#>  [8] "1952 – The Congress of Guatemala passed Decree 900, redistributing unused lands of sizes greater than 224 acres (0.9 km2) to local peasants and having a major effect on the nation's land reform movement."
+#>  [9] "... that Prisoners of the Sun—​the fourteenth volume of The Adventures of Tintin—​was made into a musical in 2001?"                                                                                           
+#> [10] "... that the 2018 teen drama Skate Kitchen was partly filmed with a camera mounted on a motorized skateboard deck traveling at speeds of up to 20 miles per hour (32 km/h)?"
+```
 
-date_tbl %>% 
-  dplyr::rowwise() %>% 
-  dplyr::mutate(fact = wiki_randomfact(date))
-#> # A tibble: 14 x 2
-#> # Rowwise: 
-#>    date       fact                                                              
-#>    <date>     <chr>                                                             
-#>  1 2015-01-01 Did you know that construction of the Old Sisters High School (pi…
-#>  2 2015-01-02 Did you know that King Bayinnaung of Burma entered into several m…
-#>  3 2015-01-03 Here was some news on 03 January 2015. Authorities confirm the di…
-#>  4 2015-01-04 Here was some news on 04 January 2015. Authorities confirm the di…
-#>  5 2015-01-05 Here was some news on 05 January 2015. At least 83 people are kil…
-#>  6 2015-01-06 Here was some news on 06 January 2015. Authorities confirm the di…
-#>  7 2015-01-07 Here was some news on 07 January 2015. At least 83 people are kil…
-#>  8 2015-01-08 Did you know that on January 8 in 2010 – Gunmen from an offshoot …
-#>  9 2015-01-09 Did you know that the sea snail Halystina umberlee (pictured) was…
-#> 10 2015-01-10 Did you know that on January 10 in 1929 – The Adventures of Tinti…
-#> 11 2015-01-11 Here was some news on 11 January 2015. Lithuania becomes the 19th…
-#> 12 2015-01-12 Here was some news on 12 January 2015. French police free hostage…
-#> 13 2015-01-13 Here was some news on 13 January 2015. Attacks by Boko Haram on t…
-#> 14 2015-01-14 Here was some news on 14 January 2015. More than three million pe…
+Search Wikipedia (launches browser with results):
+
+``` r
+wiki_search('R (programming language)')
 ```

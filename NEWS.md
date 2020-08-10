@@ -1,3 +1,9 @@
+# wikifacts 0.4
+
+• Fix issue with non-English System locales (#8)
+* Adjust functions to remove reliance on yesterday's date as default (Wikipedia isn't always updated overnight)
+* Introduce `wiki_query()` function
+
 # wikifacts 0.3.0
 
 ## New features

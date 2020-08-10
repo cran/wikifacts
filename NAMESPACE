@@ -1,3 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("magrittr", "%>%")
 importFrom("utils", "browseURL")
+importFrom("utils", "URLencode")
+importFrom("magrittr", "%>%")
+

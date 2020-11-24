@@ -1,3 +1,7 @@
+# wikifacts 0.4.1
+
+* Ensure tests fail gracefully when no internet available
+
 # wikifacts 0.4
 
 • Fix issue with non-English System locales (#8)

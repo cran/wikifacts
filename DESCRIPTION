@@ -1,7 +1,7 @@
 Package: wikifacts
 Type: Package
 Title: Get Facts and Data from Wikipedia and Wikidata
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: 
     c(person(given = "Keith",
            family = "McNulty",
@@ -15,14 +15,13 @@ Authors@R:
 Description: Query Wikidata and get facts from current and historic Wikipedia main pages.  
 License: CC0
 Encoding: UTF-8
-LazyData: true
-Imports: curl, magrittr, rvest, utils, xml2
+Imports: magrittr, rvest, utils, xml2
 RoxygenNote: 7.1.1
 Suggests: covr, testthat
 NeedsCompilation: no
-Packaged: 2020-11-24 10:48:30 UTC; keithmcnulty
+Packaged: 2021-04-29 14:11:51 UTC; rstudio
 Author: Keith McNulty [aut, cre] (<https://orcid.org/0000-0002-2332-1654>),
   Petr Kajzar [ctb]
 Maintainer: Keith McNulty <keith.mcnulty@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-11-24 16:20:02 UTC
+Date/Publication: 2021-04-29 14:20:02 UTC

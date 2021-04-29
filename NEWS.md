@@ -1,3 +1,10 @@
+# wikifacts 0.4.2.9000
+
+# wikifacts 0.4.2
+
+* Change URL endpoint for `wiki_search()`
+* Add new `wiki_define()` function 
+
 # wikifacts 0.4.1
 
 * Ensure tests fail gracefully when no internet available
